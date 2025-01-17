@@ -6,6 +6,141 @@
     <title>할일 목록</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        
+        /* 전체 배경 색상 및 폰트 설정 */
+        body {
+            background-color: #f4f7fb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 헤더 스타일 */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* 입력 필드와 버튼을 감싸는 컨테이너 스타일 */
+        .input-group {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 할일 제목 입력창 스타일 */
+        #todoInput {
+            border-radius: 30px;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #ced4da;
+        }
+
+        /* 마감일 입력창 스타일 */
+        #dueDateInput {
+            border-radius: 30px;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #ced4da;
+        }
+
+        /* 버튼 스타일 */
+        .btn-primary {
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        /* 버튼 호버 효과 */
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        /* 할일 목록 영역 */
+        #todoList {
+            margin-top: 30px;
+        }
+
+        /* 할일 항목 스타일 */
+        .todo-item {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        /* 할일 항목 호버 효과 */
+        .todo-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 할일 제목 스타일 */
+        .todo-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #333;
+            flex-grow: 1;
+        }
+
+        /* 완료된 할일 스타일 */
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        /* 마감일 스타일 */
+        .todo-date {
+            color: #777;
+            margin: 0 20px;
+            min-width: 100px;
+        }
+
+        /* 과거 마감일 빨간색으로 표시 */
+        .overdue {
+            color: red;
+        }
+
+        /* 할일 버튼 스타일 */
+        .todo-actions {
+            margin-left: auto;
+        }
+
+        /* 버튼들 스타일 */
+        .todo-actions button {
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-left: 5px;
+        }
+
+        .edit-todo {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .edit-todo:hover {
+            background-color: #138496;
+        }
+
+        .delete-todo {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .delete-todo:hover {
+            background-color: #c82333;
+        }
+
+
         .completed {
             text-decoration: line-through;
             color: #888;

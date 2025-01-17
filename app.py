@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # MySQL 연결 설정
 db_config = {
-    'host': 'localhost',
-    'user': 'sejong',
+    'host': '10.0.66.5',
+    'user': 'suyong',
     'password': '1234',
     'database': 'todo_db'
 }
@@ -18,7 +18,7 @@ def get_db_connection():
 
 # 테이블 생성 쿼리 (due_date 필드 추가)
 create_table_query = """
-CREATE TABLE IF NOT EXISTS todos (
+CREATE TABLE IF NOT EXISTS todos2 (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
     completed BOOLEAN DEFAULT FALSE,
@@ -55,7 +55,7 @@ def add_todo():
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO todos (title, due_date) VALUES (%s, %s)", (title, due_date))
+        cursor.execute("INSERT INTO todos2 (title, due_date) VALUES (%s, %s)", (title, due_date))
         conn.commit()
         todo_id = cursor.lastrowid
         
@@ -78,7 +78,7 @@ def get_todos():
     try:
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT *, DATE_FORMAT(due_date, '%Y-%m-%d') as due_date_formatted FROM todos ORDER BY due_date ASC, created_at DESC")
+        cursor.execute("SELECT *, DATE_FORMAT(due_date, '%Y-%m-%d') as due_date_formatted FROM todos2 ORDER BY due_date ASC, created_at DESC")
         todos = cursor.fetchall()
         return jsonify(todos)
     except Exception as e:
@@ -112,7 +112,7 @@ def update_todo(todo_id):
             update_values.append(due_date)
             
         if update_fields:
-            query = "UPDATE todos SET " + ", ".join(update_fields) + " WHERE id = %s"
+            query = "UPDATE todos2 SET " + ", ".join(update_fields) + " WHERE id = %s"
             update_values.append(todo_id)
             cursor.execute(query, tuple(update_values))
             conn.commit()
@@ -130,7 +130,7 @@ def delete_todo(todo_id):
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM todos WHERE id = %s", (todo_id,))
+        cursor.execute("DELETE FROM todos2 WHERE id = %s", (todo_id,))
         conn.commit()
         return jsonify({'message': '삭제 성공'}), 200
     except Exception as e:
